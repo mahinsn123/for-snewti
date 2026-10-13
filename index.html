@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Snewti 🤍🌹</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+    body {
+      font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffeef8 0%, #ffd3e2 50%, #ffc2d6 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      color: #7a284c;
+      position: relative;
+    }
+
+    .heart-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .floating-heart {
+      position: absolute;
+      color: rgba(255, 105, 180, 0.45);
+      animation: floatUp 8s linear infinite;
+      font-size: 20px;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 0; }
+      20% { opacity: 0.8; }
+      100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
+    }
+
+    .app-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 520px;
+      padding: 20px;
+    }
+    .screen {
+      display: none;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(255, 182, 193, 0.8);
+      border-radius: 30px;
+      padding: 35px 25px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(230, 80, 130, 0.15);
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    .screen.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .cat-avatar {
+      width: 130px;
+      height: 130px;
+      margin: 0 auto 15px;
+      position: relative;
+      animation: floatCat 3s ease-in-out infinite;
+    }
+    @keyframes floatCat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #d81b60;
+      margin-bottom: 8px;
+    }
+    p.subtitle {
+      font-size: 1rem;
+      color: #a04068;
+      margin-bottom: 25px;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
+      position: relative;
+      min-height: 50px;
+    }
+    .btn {
+      background: linear-gradient(45deg, #ff4081, #ff6e40);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(255, 64, 129, 0.3);
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 10px 25px rgba(255, 64, 129, 0.4);
+    }
+    .btn-no {
+      background: #e0e0e0;
+      color: #666;
+      box-shadow: none;
+      position: relative;
+    }
+
+    .letter-box {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: left;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: #5a1a38;
+      max-height: 280px;
+      overflow-y: auto;
+      border: 1px solid #ffb6c1;
+      margin: 15px 0;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .letter-box p {
+      margin-bottom: 12px;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 182, 193, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      animation: fadeIn 0.4s ease;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-card {
+      background: #ffffff;
+      border-radius: 30px;
+      padding: 30px 25px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(216, 27, 96, 0.25);
+      border: 3px solid #ffc2d6;
+    }
+    .rose-card {
+      width: 100%;
+      max-width: 240px;
+      margin: 15px auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border: 2px solid #ffeef8;
+      background: #000;
+    }
+    .rose-card img {
+      width: 100%;
+      height: auto;
+      max-height: 320px;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="heart-bg" id="heartBg"></div>
+
+  <div class="app-container">
+
+    <!-- Screen 1 -->
+    <div class="screen active" id="screen1">
+      <div class="cat-avatar">
+        <svg viewBox="0 0 200 200" width="100%" height="100%">
+          <circle cx="100" cy="115" r="65" fill="#FFF0F5" stroke="#FFB6C1" stroke-width="4"/>
+          <polygon points="50,65 70,105 40,100" fill="#FFB6C1"/>
+          <polygon points="150,65 130,105 160,100" fill="#FFB6C1"/>
+          <circle cx="80" cy="110" r="8" fill="#4A2E35"/>
+          <circle cx="120" cy="110" r="8" fill="#4A2E35"/>
+          <circle cx="82" cy="108" r="3" fill="#FFF"/>
+          <circle cx="122" cy="108" r="3" fill="#FFF"/>
+          <ellipse cx="100" cy="122" rx="6" ry="4" fill="#FF69B4"/>
+          <path d="M 70 130 Q 100 145 130 130" fill="none" stroke="#FF69B4" stroke-width="4" stroke-linecap="round"/>
+          <text x="75" y="45" font-size="22">🌸</text>
+        </svg>
+      </div>
+      <h1>I have something special for you... ✨</h1>
+      <p class="subtitle">Something meant only for Snewti 💕</p>
+      <button class="btn" onclick="nextScreen(2)">Tap to Begin 💖</button>
+    </div>
+
+    <!-- Screen 2 -->
+    <div class="screen" id="screen2">
+      <div class="cat-avatar">
+        <svg viewBox="0 0 200 200" width="100%" height="100%">
+          <circle cx="100" cy="115" r="65" fill="#FFF0F5" stroke="#FFB6C1" stroke-width="4"/>
+          <polygon points="50,65 70,105 40,100" fill="#FFB6C1"/>
+          <polygon points="150,65 130,105 160,100" fill="#FFB6C1"/>
+          <circle cx="80" cy="115" r="7" fill="#4A2E35"/>
+          <circle cx="120" cy="115" r="7" fill="#4A2E35"/>
+          <ellipse cx="100" cy="125" rx="5" ry="4" fill="#FF69B4"/>
+          <path d="M 90 135 Q 100 128 110 135" fill="none" stroke="#4A2E35" stroke-width="3" stroke-linecap="round"/>
+          <text x="135" y="90" font-size="28">🥺</text>
+        </svg>
+      </div>
+      <h1>Be honest with me... 🥺</h1>
+      <p class="subtitle">Do you trust me, Snewti? 💕</p>
+      <div class="btn-group">
+        <button class="btn" onclick="nextScreen(3)">Yes, I do! 💕</button>
+        <button class="btn btn-no" id="noBtn1" onmouseover="moveButton(this)" onclick="moveButton(this)">No 😔</button>
+      </div>
+    </div>
+
+    <!-- Screen 3 -->
+    <div class="screen" id="screen3">
+      <div class="cat-avatar">
+        <svg viewBox="0 0 200 200" width="100%" height="100%">
+          <circle cx="100" cy="115" r="65" fill="#FFF0F5" stroke="#FFB6C1" stroke-width="4"/>
+          <polygon points="50,65 70,105 40,100" fill="#FFB6C1"/>
+          <polygon points="150,65 130,105 160,100" fill="#FFB6C1"/>
+          <circle cx="80" cy="110" r="8" fill="#4A2E35"/>
+          <circle cx="120" cy="110" r="8" fill="#4A2E35"/>
+          <circle cx="82" cy="108" r="3" fill="#FFF"/>
+          <circle cx="122" cy="108" r="3" fill="#FFF"/>
+          <path d="M 75 130 Q 100 148 125 130" fill="none" stroke="#FF69B4" stroke-width="4" stroke-linecap="round"/>
+          <text x="60" y="55" font-size="28">🥰</text>
+          <text x="110" y="50" font-size="24">✨</text>
+        </svg>
+      </div>
+
+      <h1>Last question, I promise! 💖</h1>
+      <p class="subtitle">This one is from my heart...</p>
+
+      <div class="letter-box">
+        <p>তোমার ওই দুই চোখের চাহনি দেখে ক্রাশ খাইছি! তোমার কি যে সুন্দর হাসি, তুমি এতো ফর্সা ইয়ে! 🥺✨</p>
+        <p>আমার আজও স্পষ্ট মনে আছে, বগুড়া রোডে কোচিং থেকে যখন তুমি হেঁটে আসতেছিলে—হাজার মানুষের ভিড়ে তোমাকে প্রথম দেখেছিলাম। তখন মনে হয়েছিল এত মানুষের মধ্যে তুমি যেন একা একটা ফুটন্ত গোলাপ! কী যে সুন্দর লাগছিল তোমাকে দেখতে! 🤍🌹</p>
+        <p>তোমার অনেক গোলাপ পছন্দ, বিশেষ করে সাদা গোলাপ! তোমাকে প্রথম দেখার পর থেকেই আমার পুরো মনটা কেবল তোমারই হয়ে গেছে। তোমাকে যে কতটা ভালোবাসি, তা হয়তো বলে বোঝাতে পারব না—I love you so much!</p>
+        <p>তুমি সত্যিই আমার জীবনের সবচেয়ে সুন্দর উপহার। তোমার সাথে কাটানো প্রত্যেকটা মুহূর্ত আমার কাছে একদম জাদুর মতো মনে হয়। তুমি পাশে থাকলে পৃথিবীর সব কষ্ট এক নিমেষে দূরে চলে যায়, মনটা শান্তিতে ভরে যায়। 💫</p>
+        <p>আমি জীবনের বাকি পুরো পথটা তোমার এই হাতটি ধরে তোমার পাশেই হেঁটে যেতে চাই। প্রতিটা হাসিতে, প্রতিটা দুঃখে তোমার পাশে থাকতে চাই।</p>
+        <p style="font-weight: 700; color: #d81b60; text-align: center; margin-top: 10px;">Will you hold my hand forever and be mine, Snewti? 🤍🌹✨</p>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn" onclick="openRoseModal()">Yes, Forever! 💍💖</button>
+        <button class="btn btn-no" id="noBtn2" onmouseover="moveButton(this)" onclick="moveButton(this)">Let me think... 🤔</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- White Rose Popup Modal -->
+  <div class="modal-overlay" id="roseModal">
+    <div class="modal-card">
+      <div style="font-size: 2rem;">🥰 🤍 🌹</div>
+      <h2 style="color: #d81b60; margin: 10px 0; font-size: 1.5rem;">I Love You Snewti!</h2>
+      
+      <div class="rose-card">
+        <img src="rose.jpg" alt="White Rose">
+      </div>
+
+      <p style="font-size: 1.25rem; font-weight: 700; color: #d81b60; margin: 15px 0;">
+        এই নেও তোমার সাদা গোলাপটি 🤍🌹
+      </p>
+
+      <button class="btn" onclick="closeRoseModal()">Forever Yours 💖</button>
+    </div>
+  </div>
+
+  <script>
+    const heartBg = document.getElementById('heartBg');
+    const heartIcons = ['❤️', '💖', '💕', '✨', '🌸', '🤍'];
+    for (let i = 0; i < 25; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      heartBg.appendChild(heart);
+    }
+
+    function nextScreen(screenNum) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById('screen' + screenNum).classList.add('active');
+    }
+
+    function moveButton(btn) {
+      const x = Math.random() * (window.innerWidth - btn.offsetWidth - 60);
+      const y = Math.random() * (window.innerHeight - btn.offsetHeight - 60);
+      btn.style.position = 'fixed';
+      btn.style.left = Math.max(20, x) + 'px';
+      btn.style.top = Math.max(20, y) + 'px';
+    }
+
+    function openRoseModal() {
+      document.getElementById('roseModal').classList.add('active');
+    }
+    function closeRoseModal() {
+      document.getElementById('roseModal').classList.remove('active');
+    }
+  </script>
+</body>
+</html>D
